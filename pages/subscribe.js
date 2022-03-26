@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { FaYoutube, FaTwitch, FaPatreon, FaDonate } from "react-icons/fa";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
 const ListenAtButton = ({ prefix = "Watch On", href, text, Icon }) => {
@@ -113,6 +114,7 @@ export default function Home() {
           />
         </nav>
       </Main>
+      <Footer />
     </>
   );
 }
