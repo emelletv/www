@@ -2,6 +2,8 @@ import Head from "next/head";
 import { FaYoutube, FaTwitch } from "react-icons/fa";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import Image from "next/image";
+
 const IntroSection = () => {
   return (
     <section className="mb-8 leading-6 text-gray-800 md:mb-12">
@@ -83,6 +85,7 @@ const ListenAtButton = ({ href, text, Icon }) => {
       className="flex items-center py-2 pr-6 pl-2 mr-3 mb-3 w-3/4 leading-6 no-underline whitespace-nowrap bg-white rounded-md border border-gray-400 border-solid transition cursor-pointer box-border"
       target="_blank"
       style={{ transform: "matrix(1, 0, 0, 1, 0, -2)" }}
+      rel="noreferrer"
     >
       <Icon className="block flex-shrink-0 mr-2 w-auto h-8 text-gray-800 align-middle cursor-pointer" />
       <label className="flex-shrink-0 text-gray-800 cursor-pointer">
@@ -238,9 +241,12 @@ export const Episode = ({ title, url, description, date, duration, index }) => (
       href={url}
       className="hidden flex-shrink-0 w-12 h-12 cursor-pointer sm:h-20 sm:w-20"
     >
-      <img
+      <Image
         src="/logo.png"
         className="block w-12 max-w-full h-12 align-middle md:h-20 md:w-20"
+        alt="Logo"
+        width="100"
+        height="100"
       />
     </a>
   </div>
@@ -325,8 +331,8 @@ const episodes = [
 episodes.reverse();
 
 const Episodes = () => (
-  <div class="leading-6 text-gray-800">
-    <h3 class="flex items-end mx-0 mt-0 mb-4 text-sm font-semibold tracking-wide leading-none text-gray-500 uppercase">
+  <div className="leading-6 text-gray-800">
+    <h3 className="flex items-end mx-0 mt-0 mb-4 text-sm font-semibold tracking-wide leading-none text-gray-500 uppercase">
       Upcoming episode
     </h3>
     <Episode

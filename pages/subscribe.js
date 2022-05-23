@@ -9,6 +9,7 @@ const ListenAtButton = ({ prefix = "Watch On", href, text, Icon }) => {
       href={href}
       className="flex items-center py-2 pr-6 pl-2 mr-3 mb-3 leading-6 no-underline whitespace-nowrap bg-white rounded-md border border-gray-400 border-solid transition cursor-pointer box-border w-auto"
       target="_blank"
+      rel="noreferrer"
       style={{ transform: "matrix(1, 0, 0, 1, 0, -2)" }}
     >
       <Icon className="block flex-shrink-0 mr-2 w-auto h-8 text-gray-800 align-middle cursor-pointer" />

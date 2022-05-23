@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export const Header = () => {
   const router = useRouter();
@@ -9,28 +10,30 @@ export const Header = () => {
       <div className="text-white lg:px-8 sm:mx-auto sm:px-4">
         <div className="flex-wrap gap-y-6 items-end px-4 sm:flex sm:gap-x-8 md:gap-x-12 md:px-8">
           <Link href="/">
-            <a className="flex-shrink-0 max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28">
-              <img
+            <div className="flex-shrink-0 max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28">
+              <Image
                 src="/logo.png"
-                alt="EmelleTV"
+                alt="Logo"
                 className="block max-w-xs h-auto max-h-20 align-middle lg:max-h-32 md:max-h-28"
+                width="100"
+                height="100"
               />
-            </a>
+            </div>
           </Link>
           <hgroup className="flex-shrink-0">
             <nav className="hidden gap-x-8 text-xl font-bold leading-none sm:flex md:gap-x-12">
               <Link href="/">
-                <a
+                <div
                   className={`leading-5 ${
                     router.pathname == "/" ? isActiveClassName : ""
                   } opacity-100 cursor-pointer hover:underline hover:opacity-100`}
                   title="Home"
                 >
                   Home
-                </a>
+                </div>
               </Link>
               <Link href="/about">
-                <a
+                <div
                   className={`leading-5 ${
                     router.pathname == "/about" ? isActiveClassName : ""
                   } opacity-100 cursor-pointer hover:underline hover:opacity-100`}
@@ -38,17 +41,17 @@ export const Header = () => {
                   href="/about"
                 >
                   About
-                </a>
+                </div>
               </Link>
               <Link href="/subscribe">
-                <a
+                <div
                   className={`leading-5 ${
                     router.pathname == "/subscribe" ? isActiveClassName : ""
                   } opacity-100 cursor-pointer hover:underline hover:opacity-100`}
                   title="Subscribe"
                 >
                   Subscribe and Support
-                </a>
+                </div>
               </Link>
             </nav>
           </hgroup>
