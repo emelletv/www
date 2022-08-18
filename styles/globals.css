@@ -6,8 +6,16 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -17,4 +25,17 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.layout {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .layout {
+    padding: 0 1.5rem;
+  }
 }

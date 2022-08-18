@@ -1,6 +1,8 @@
+import constants from "../constants";
+
 export const Footer = () => (
   <footer
-    className="py-8 px-4 mt-8 leading-6 text-gray-600 border-b-0 border-t-2 border-gray-200 border-solid sm:mt-12 sm:py-12 md:mx-8 md:px-0 box-border border-x-0"
+    className="w-full layout py-8 mt-8 leading-6 text-gray-600 border-b-0 border-t-2 border-gray-200 border-solid"
     style={{ borderWidth: 0 }}
   >
     <div className="flex flex-wrap text-gray-600 sm:gap-x-10 md:flex-nowrap">
@@ -10,7 +12,7 @@ export const Footer = () => (
           style={{ gap: "0.75rem 0.875rem" }}
         >
           <a
-            href="mailto:emelletvshow@gmail.com"
+            href={"mailto:" + constants.mail}
             className="flex items-center w-6 h-6 text-gray-500 transition cursor-pointer"
             title="Email Us"
           >
@@ -28,7 +30,7 @@ export const Footer = () => (
             </svg>
           </a>
           <a
-            href="https://twitter.com/emelletv"
+            href={constants.twitter}
             className="flex items-center w-6 h-6 text-gray-500 transition cursor-pointer"
             target="_twitter"
             title="View EmelleTV on Twitter"

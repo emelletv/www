@@ -2,6 +2,7 @@ import Head from "next/head";
 import { FaYoutube, FaTwitch } from "react-icons/fa";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import constants from "../constants";
 
 const ListenAtButton = ({ href, text, Icon }) => {
   return (
@@ -44,28 +45,26 @@ const WhereToWatch = () => (
         Where to watch
       </span>
     </h3>
-    <ListenAtButton
-      Icon={FaTwitch}
-      text="Twitch"
-      href="https://www.twitch.tv/emelletv"
-    />
-    <ListenAtButton
-      Icon={FaYoutube}
-      text="YouTube"
-      href="https://www.youtube.com/channel/UCvVVfCa7-nzSuCdMKXnNJNQ"
-    />
+    <div className="flex flex-col gap-1">
+      <ListenAtButton Icon={FaTwitch} text="Twitch" href={constants.twitch} />
+      <ListenAtButton
+        Icon={FaYoutube}
+        text="YouTube"
+        href={constants.youtube}
+      />
+    </div>
   </aside>
 );
 
 const Main = ({ children }) => {
   return (
-    <main className="relative leading-6 text-gray-800 lg:px-8 sm:-top-12 sm:mx-auto sm:px-4">
+    <main className="layout relative leading-6">
       <section
         className="pt-6 leading-6 text-gray-800 bg-white border-t-0 border-b border-gray-200
       border-solid sm:rounded sm:border-0 md:pt-8 box-border border-x-0"
       >
         <section
-          className="px-4 leading-6 text-gray-800 md:px-8"
+          className="leading-6 text-gray-800"
           style={{ minHeight: "400px" }}
         >
           <div
@@ -87,37 +86,39 @@ const Main = ({ children }) => {
 };
 
 const About = () => (
-  <div className="order-1 text-lg leading-8 text-gray-800 md:row-span-1">
-    EmelleTV is a show where we bring brains from the ML community to talk about
-    their visions and goals in a very casual conversation.
-    <br className="leading-8" />
-    <br className="leading-8" />
-    EmelleTV is hosted by{" "}
-    <a
-      href="https://twitter.com/davesnx"
-      className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
-    >
-      Dave Sancho
-    </a>{" "}
-    and{" "}
-    <a
-      href="https://twitter.com/fakenickels"
-      className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
-    >
-      Gabriel R. Abreu
-    </a>
-    .
-    <br className="leading-8" />
-    Feedbacks, questions, schedule an interview
-    <br className="leading-8" />
-    <a
-      href="https://twitter.com/emelletv"
-      className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
-    >
-      DM us on Twitter
-    </a>
-    .
-  </div>
+  <Main>
+    <div className="order-1 text-lg leading-8 text-gray-800 md:row-span-1">
+      EmelleTV is a show where we bring brains from the ML community to talk
+      about their visions and goals in a very casual conversation.
+      <br className="leading-8" />
+      <br className="leading-8" />
+      EmelleTV is hosted by{" "}
+      <a
+        href={constants.davesnx.twitter}
+        className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
+      >
+        {constants.davesnx.name}
+      </a>{" "}
+      and{" "}
+      <a
+        href={constants.fakenickels.twitter}
+        className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
+      >
+        {constants.fakenickels.name}
+      </a>
+      .
+      <br className="leading-8" />
+      Feedbacks, questions, schedule an interview
+      <br className="leading-8" />
+      <a
+        href={constants.twitter}
+        className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
+      >
+        DM us on Twitter
+      </a>
+      .
+    </div>
+  </Main>
 );
 
 export default function Home() {
@@ -127,10 +128,8 @@ export default function Home() {
         <title>EmelleTV</title>
       </Head>
       <Header />
-      <Main>
-        <About />
-        <Footer />
-      </Main>
+      <About />
+      <Footer />
     </>
   );
 }

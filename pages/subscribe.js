@@ -1,7 +1,7 @@
-import Head from "next/head";
 import { FaYoutube, FaTwitch, FaPatreon, FaDonate } from "react-icons/fa";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import constants from "../constants";
 
 const ListenAtButton = ({ prefix = "Watch On", href, text, Icon }) => {
   return (
@@ -25,13 +25,13 @@ const ListenAtButton = ({ prefix = "Watch On", href, text, Icon }) => {
 
 const Main = ({ children }) => {
   return (
-    <main className="relative leading-6 text-gray-800 lg:px-8 sm:-top-12 sm:mx-auto sm:px-4">
+    <main className="layout relative leading-6">
       <section
         className="pt-6 leading-6 text-gray-800 bg-white border-t-0 border-b border-gray-200
-      border-solid sm:rounded sm:border-0 md:pt-8 box-border border-x-0"
+      border-solid sm:rounded sm:border-0 box-border border-x-0"
       >
         <section
-          className="px-4 leading-6 text-gray-800 md:px-8"
+          className="leading-6 text-gray-800"
           style={{ minHeight: "400px" }}
         >
           <div
@@ -50,17 +50,11 @@ const Main = ({ children }) => {
   );
 };
 
-export default function Home() {
+export default function Subscribe() {
   return (
     <>
-      <Head>
-        <title>EmelleTV</title>
-      </Head>
       <Header />
       <Main>
-        <h1 className="mx-0 mt-0 mb-6 text-2xl font-extrabold leading-8 text-gray-800 sm:mb-8 sm:text-3xl sm:leading-9">
-          Subscribe and Support
-        </h1>
         <p className="mx-0 mt-0 mb-6 text-lg leading-8 text-gray-800">
           Subscribe to <strong className="leading-8 font-bold">EmelleTV</strong>{" "}
           and support.
@@ -89,12 +83,12 @@ export default function Home() {
           <ListenAtButton
             Icon={FaTwitch}
             text="Twitch"
-            href="https://www.twitch.tv/emelletv"
+            href={constants.twitch}
           />
           <ListenAtButton
             Icon={FaYoutube}
             text="YouTube"
-            href="https://www.youtube.com/channel/UCvVVfCa7-nzSuCdMKXnNJNQ"
+            href={constants.youtube}
           />
         </nav>
 
@@ -111,7 +105,7 @@ export default function Home() {
             Icon={FaPatreon}
             text="Patreon"
             prefix="Support On"
-            href="https://patreon.com/emelletv"
+            href={constants.patreon}
           />
         </nav>
       </Main>
