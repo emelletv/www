@@ -39,3 +39,15 @@ a {
     padding: 0 1.5rem;
   }
 }
+
+.mask-thumbnail {
+  position: relative;
+  height: 0;
+  padding-bottom: 56%;
+  overflow: hidden;
+}
+
+.mask-thumbnail img {
+  width: 100%;
+  transform: translateY(-12.5%) !important;
+}

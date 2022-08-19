@@ -6,9 +6,40 @@ import constants from "../constants";
 import Image from "next/image";
 
 const colors = {
-  OCaml: "rgb(238 106 26)",
-  Reason: "#db4d3f",
-  ReScript: "rgba(230,72,79)",
+  OCaml: "rgb(238, 106, 26)",
+  Reason: "rgb(219, 77, 63)",
+  ReScript: "rgb(230, 72, 79)",
+};
+
+export const getStaticProps = async () => {
+  const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
+  const channelId = "UCvVVfCa7-nzSuCdMKXnNJNQ";
+
+  return fetch(
+    `https://www.googleapis.com/youtube/v3/channels?id=${channelId}&key=${YOUTUBE_API_KEY}&part=contentDetails`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const uploadsId = data.items[0].contentDetails.relatedPlaylists.uploads;
+      console.log(data);
+      return fetch(
+        `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${uploadsId}&key=${YOUTUBE_API_KEY}&part=snippet&maxResults=50`
+      )
+        .then((response) => response.json())
+        .then((data) => ({
+          props: {
+            episodes: data.items
+              .map((i) => i.snippet)
+              .sort((left, right) => {
+                const leftDate = new Date(left.publishedAt).toISOString();
+                const rightDate = new Date(right.publishedAt).toISOString();
+                return leftDate > rightDate ? -1 : 1;
+              }),
+          },
+        }))
+        .catch((error) => ({ props: { error, episodes: [] } }));
+    })
+    .catch((error) => ({ props: { error, episodes: [] } }));
 };
 
 const Host = ({ name, twitter, avatar }) => {
@@ -162,177 +193,112 @@ const Main = ({ children }) => {
   );
 };
 
-export const Episode = ({ title, url, description, date, duration, index }) => (
+export const Episode = ({
+  thumbnail,
+  title,
+  url,
+  description,
+  date,
+  index,
+}) => (
   <div
-    className="flex gap-x-4 items-start py-3 px-4 mb-8 text-gray-800 border-gray-300 border-solid box-border border-x-0 border-y"
+    className="flex flex-col items-start mb-8 text-slate-200 border-solid box-border border-x-0 border-y rounded-md bg-gray-900"
     style={{ borderWidth: 0, boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px" }}
   >
-    <button
-      title="Play Episode"
-      role="button"
-      className="flex-shrink-0 p-0 m-0 w-10 h-10 text-center normal-case bg-transparent bg-none duration-200 ease-in-out cursor-pointer text-slate-600 hover:opacity-90"
-      style={{
-        fontSize: "128%",
-        transitionProperty:
-          "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter",
-      }}
-    >
-      <svg
-        role="img"
-        className="block align-middle"
-        viewBox="0 0 16 16"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ fill: "currentcolor" }}
-      >
-        <path
-          fillRule="evenodd"
-          d="M8,16 C12.4183,16 16,12.4183 16,8 C16,3.58172 12.4183,0 8,0 C3.58172,0 0,3.58172 0,8 C0,12.4183 3.58172,16 8,16 Z M7.5547,5.16795 C7.24784,4.96338 6.8533,4.94431 6.52814,5.11833 C6.20298,5.29235 6,5.63121 6,6.00000106 L6,10.0000011 C6,10.3688 6.20298,10.7077 6.52814,10.8817 C6.8533,11.0557 7.24784,11.0366 7.5547,10.8321 L10.5547,8.8321 C10.8329,8.6466 11,8.3344 11,8.00000106 C11,7.66565 10.8329,7.35342 10.5547,7.16795 L7.5547,5.16795 Z"
-          className=""
-        />
-      </svg>
-    </button>
-    <button
-      title="Pause Episode"
-      role="button"
-      className="hidden flex-shrink-0 p-0 m-0 w-10 h-10 text-center normal-case bg-transparent bg-none duration-200 ease-in-out cursor-pointer text-slate-600 hover:opacity-90"
-      style={{
-        display: "none",
-        fontSize: "128%",
-        transitionProperty:
-          "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter",
-      }}
-    >
-      <svg
-        role="img"
-        className="block align-middle"
-        viewBox="0 0 16 16"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ fill: "currentcolor" }}
-      >
-        <path
-          fillRule="evenodd"
-          d="M16,8 C16,12.4183 12.4183,16 8,16 C3.58172,16 0,12.4183 0,8 C0,3.58172 3.58172,0 8,0 C12.4183,0 16,3.58172 16,8 Z M5,6 C5,5.44772 5.44772,5 6,5 C6.55228,5 7,5.44772 7,6 L7,10 C7,10.5523 6.55228,11 6,11 C5.44772,11 5,10.5523 5,10 L5,6 Z M10,5 C9.4477,5 9,5.44772 9,6 L9,10 C9,10.5523 9.4477,11 10,11 C10.5523,11 11,10.5523 11,10 L11,6 C11,5.44772 10.5523,5 10,5 Z"
-          className=""
-        />
-      </svg>
-    </button>
-    <div className="flex-grow">
-      <h2 className="mx-0 mt-0 mb-1 text-lg font-bold">
-        <a
-          href={url}
-          aria-label={`View episode: ${title}`}
-          className="cursor-pointer hover:underline"
-        >
-          {title}
-        </a>
-      </h2>
-      <p className="mx-0 mt-0 mb-1 text-base leading-7 text-gray-700">
-        {description}
-      </p>
-      <div className="flex flex-wrap gap-x-2 text-xs leading-4 text-gray-400">
-        <time className="text-sm leading-5">{date}</time>
-        <span className="text-sm leading-5">/</span>
-        <span className="text-sm leading-5">{duration}</span>
-        <span className="text-sm leading-5">/</span>
-        <span className="text-sm leading-5">{index}</span>
+    {thumbnail && thumbnail.url ? (
+      <div className="mask-thumbnail rounded-t-md">
+        <Image width={thumbnail.width} height={thumbnail.height} src={thumbnail.url} alt={title} />
       </div>
+    ) : null}
+
+    <div className="flex gap-4 py-3 px-4 items-center">
+      <button
+        title="Play Episode"
+        role="button"
+        className="flex-shrink-0 p-0 m-0 w-10 h-10 text-center normal-case bg-transparent bg-none duration-200 ease-in-out cursor-pointer text-slate-200 hover:opacity-90"
+        style={{
+          fontSize: "128%",
+          transitionProperty:
+            "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter",
+        }}
+      >
+        <svg
+          role="img"
+          className="block align-middle"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ fill: "currentcolor" }}
+        >
+          <path
+            fillRule="evenodd"
+            d="M8,16 C12.4183,16 16,12.4183 16,8 C16,3.58172 12.4183,0 8,0 C3.58172,0 0,3.58172 0,8 C0,12.4183 3.58172,16 8,16 Z M7.5547,5.16795 C7.24784,4.96338 6.8533,4.94431 6.52814,5.11833 C6.20298,5.29235 6,5.63121 6,6.00000106 L6,10.0000011 C6,10.3688 6.20298,10.7077 6.52814,10.8817 C6.8533,11.0557 7.24784,11.0366 7.5547,10.8321 L10.5547,8.8321 C10.8329,8.6466 11,8.3344 11,8.00000106 C11,7.66565 10.8329,7.35342 10.5547,7.16795 L7.5547,5.16795 Z"
+            className=""
+          />
+        </svg>
+      </button>
+      <button
+        title="Pause Episode"
+        role="button"
+        className="hidden flex-shrink-0 p-0 m-0 w-10 h-10 text-center normal-case bg-transparent bg-none duration-200 ease-in-out cursor-pointer text-slate-600 hover:opacity-90"
+        style={{
+          display: "none",
+          fontSize: "128%",
+          transitionProperty:
+            "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter",
+        }}
+      >
+        <svg
+          role="img"
+          className="block align-middle"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ fill: "currentcolor" }}
+        >
+          <path
+            fillRule="evenodd"
+            d="M16,8 C16,12.4183 12.4183,16 8,16 C3.58172,16 0,12.4183 0,8 C0,3.58172 3.58172,0 8,0 C12.4183,0 16,3.58172 16,8 Z M5,6 C5,5.44772 5.44772,5 6,5 C6.55228,5 7,5.44772 7,6 L7,10 C7,10.5523 6.55228,11 6,11 C5.44772,11 5,10.5523 5,10 L5,6 Z M10,5 C9.4477,5 9,5.44772 9,6 L9,10 C9,10.5523 9.4477,11 10,11 C10.5523,11 11,10.5523 11,10 L11,6 C11,5.44772 10.5523,5 10,5 Z"
+            className=""
+          />
+        </svg>
+      </button>
+      <div className="flex-grow">
+        <h2 className="mx-0 mt-0 mb-1 text-lg font-bold">
+          <a
+            href={url}
+            aria-label={`View episode: ${title}`}
+            className="cursor-pointer hover:underline"
+          >
+            {title}
+          </a>
+        </h2>
+        <p className="mx-0 mt-0 mb-1 text-base leading-7 text-gray-700">
+          {description}
+        </p>
+        <div className="flex flex-wrap gap-x-2 text-xs leading-4 text-gray-400">
+          <span className="text-sm leading-5">{"#" + index}</span>
+          <span className="text-sm leading-5">/</span>
+          <time className="text-sm leading-5">
+            {new Date(date).toLocaleDateString()}
+          </time>
+        </div>
+      </div>
+      <a
+        href={`https://www.youtube.com/watch?v=${url}&ab_channel=EmelleTV`}
+        className="hidden flex-shrink-0 w-12 h-12 cursor-pointer sm:h-20 sm:w-20"
+      >
+        <Image
+          src="/logo.png"
+          className="block w-12 max-w-full h-12 align-middle md:h-20 md:w-20"
+          alt="Logo"
+          width="100"
+          height="100"
+        />
+      </a>
     </div>
-    <a
-      href={url}
-      className="hidden flex-shrink-0 w-12 h-12 cursor-pointer sm:h-20 sm:w-20"
-    >
-      <Image
-        src="/logo.png"
-        className="block w-12 max-w-full h-12 align-middle md:h-20 md:w-20"
-        alt="Logo"
-        width="100"
-        height="100"
-      />
-    </a>
   </div>
 );
 
-const episodes = [
-  {
-    title:
-      "Talking with Gabriel Nordeborn ReScript, Relay and everything else!",
-    description: "",
-    url: "https://www.youtube.com/watch?v=Cm6xt7CUq7Y",
-    date: "2 August 2021",
-    duration: "1:08:21",
-  },
-
-  {
-    title:
-      "Talking with António Monteiro about Melange, Esy, Reason, Ocaml and more",
-    description: "",
-    url: "https://www.youtube.com/watch?v=nYQXV0XwzGw",
-    date: "20 August 2021",
-    duration: "1:02:37",
-  },
-  {
-    title:
-      "Casually talking with Craig Ferguson about OCaml, Mirage, Irmin and more",
-    description: "",
-    url: "https://www.youtube.com/watch?v=V668Mz-59bE",
-    date: "7 September 2021",
-    duration: "1:06:57",
-  },
-  {
-    title:
-      "Casually talking with Eduardo Rafael about OCaml, Tezos and probably compilers",
-    description: "",
-    url: "https://www.youtube.com/watch?v=ufwFNJIT7Kc",
-    date: "24 September 2021",
-    duration: "1:15:12",
-  },
-  {
-    title:
-      "Casually talking about ReScript, OSS, and communities with Patrick Ecker",
-    description:
-      "Patrick (@ryyppy) is working with OSS in ReScript and part thecore team",
-    url: "https://www.youtube.com/watch?v=_ybWxXA8A-U",
-    date: "20 October 2021",
-    duration: "1:12:47",
-  },
-  {
-    title: "Talking with Jaap Frolich about graphql-ppx",
-    description:
-      "Jaap (@JaapFrolich) is working at Walnut and maintainer graphqlppx",
-    url: "https://www.youtube.com/watch?v=6E58xEV8Mos",
-    date: "2 November 2021",
-    duration: "1:11:23",
-  },
-  {
-    title: "Talking with Oscar about Grain Lang, WASM, PLT and ML",
-    description: "Oscar Spencer @oscar_spen is the co-author GrainLang",
-    url: "https://www.youtube.com/watch?v=UcqeMJbW3y0",
-    date: "8 November 2021",
-    duration: "1:02:05",
-  },
-  {
-    title:
-      "Casually talking with Gabriel Radanne about OCaml, meta-programming and much more",
-    description: `Gabriel "Drup" Radanne researcher at Inria in the CASH research team`,
-    url: "https://www.youtube.com/watch?v=VgbZT-NPrcA",
-    date: "8 November 2021",
-    duration: "1:25:05",
-  },
-  {
-    title:
-      "Causally talking with Sean Grove about GraphQL, OneGraph and ReasonML",
-    description: `Sean Grove Founder of OneGraph`,
-    url: "https://www.youtube.com/watch?v=9-i_7Ldkc_8",
-    date: "8 November 2021",
-    duration: "1:08:51",
-  },
-].sort((left, right) => {
-  const leftDate = new Date(left.date).toISOString();
-  const rightDate = new Date(right.date).toISOString();
-  return leftDate > rightDate ? -1 : 1;
-});
-
-const Episodes = () => (
+const Episodes = ({ episodes }) => (
   <Main>
     <div className="leading-6 text-gray-800">
       <div className="mb-4 leading-6 text-gray-800">
@@ -341,13 +307,14 @@ const Episodes = () => (
         </h3>
         {episodes.map((episode, index) => (
           <Episode
-            key={index}
+            key={episode.position}
             title={episode.title}
-            description={episode.description}
-            date={episode.date}
-            duration={episode.duration}
-            index={`#${episodes.length - index}`}
-            url={episode.url}
+            date={episode.publishedAt}
+            index={index + 1}
+            url={episode.resourceId.videoId}
+            thumbnail={episode.thumbnails.standard}
+            /* Current descriptions are formatted for YouTube, they don't make sense. If we get some subtitles, we should add them here. */
+            description={""}
           />
         ))}
       </div>
@@ -355,14 +322,14 @@ const Episodes = () => (
   </Main>
 );
 
-export default function Home() {
+export default function Home(props) {
   return (
     <>
       <Head>
         <title>EmelleTV</title>
       </Head>
       <Header />
-      <Episodes />
+      <Episodes episodes={props.episodes} />
       <Footer />
     </>
   );
