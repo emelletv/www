@@ -19,8 +19,9 @@ const SmallLogo = React.forwardRef(() => {
 
 export const Header = () => {
   const router = useRouter();
-  const isActiveClassName = "decoration-blue-500 underline";
-  const isHome = router.pathname === "/";
+  const isActiveClassName =
+    "underline decoration-stale-100 hover:decoration-stale-100";
+  const menu = `text-white text-xl cursor-pointer hover:underline underline-offset-2 hover:decoration-slate-400`;
 
   return (
     <header className="relative py-6 sm:pt-8 sm:pb-8 bg-slate-800">
@@ -31,34 +32,39 @@ export const Header = () => {
           </Link>
 
           <hgroup className="flex-shrink-0">
-            <nav className="hidden gap-x-8 text-xl font-bold leading-none sm:flex md:gap-x-12">
+            <nav className="hidden gap-x-8 sm:flex md:gap-x-12">
               <Link href="/">
                 <div
                   title="Home"
-                  className={`leading-5 text-white ${
-                    isHome ? isActiveClassName : ""
-                  } opacity-100 cursor-pointer hover:underline hover:opacity-100`}
+                  className={
+                    router.pathname === "/"
+                      ? menu + " " + isActiveClassName
+                      : menu
+                  }
                 >
                   Home
                 </div>
               </Link>
               <Link href="/subscribe" passHref>
                 <div
-                  className={`leading-5 text-white ${
-                    router.pathname == "/subscribe" ? isActiveClassName : ""
-                  } opacity-100 cursor-pointer hover:underline hover:opacity-100`}
                   title="Subscribe"
+                  className={
+                    router.pathname == "/subscribe"
+                      ? menu + " " + isActiveClassName
+                      : menu
+                  }
                 >
                   Subscribe
                 </div>
               </Link>
               <Link href="/about" passHref>
                 <div
-                  className={`leading-5 text-white ${
-                    router.pathname == "/about" ? isActiveClassName : ""
-                  } opacity-100 cursor-pointer hover:underline hover:opacity-100`}
                   title="About"
-                  href="/about"
+                  className={
+                    router.pathname == "/about"
+                      ? menu + " " + isActiveClassName
+                      : menu
+                  }
                 >
                   About
                 </div>
