@@ -3,6 +3,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
+const clx = (classNames) => {
+  return Object.keys(classNames)
+    .filter((name) => classNames[name])
+    .join(" ");
+};
+
 const SmallLogo = React.forwardRef(() => {
   return (
     <div className="flex justify-center items-center max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28">
@@ -17,11 +23,18 @@ const SmallLogo = React.forwardRef(() => {
   );
 });
 
+const menuData = [
+  { href: "/", title: "Home" },
+  { href: "/subscribe", title: "Subscribe" },
+  { href: "/about", title: "About" },
+];
+
 export const Header = () => {
   const router = useRouter();
   const isActiveClassName =
     "underline decoration-stale-100 hover:decoration-stale-100";
   const menu = `text-white text-xl cursor-pointer hover:underline underline-offset-2 hover:decoration-slate-400`;
+  const [isNavOpen, setIsNavOpen] = React.useState(false);
 
   return (
     <header className="relative py-6 sm:pt-8 sm:pb-8 bg-slate-800">
@@ -31,83 +44,53 @@ export const Header = () => {
             <SmallLogo />
           </Link>
 
-          <hgroup className="flex-shrink-0">
-            <nav className="hidden gap-x-8 sm:flex md:gap-x-12">
-              <Link href="/">
-                <div
-                  title="Home"
-                  className={
-                    router.pathname === "/"
-                      ? menu + " " + isActiveClassName
-                      : menu
-                  }
-                >
-                  Home
-                </div>
-              </Link>
-              <Link href="/subscribe" passHref>
-                <div
-                  title="Subscribe"
-                  className={
-                    router.pathname == "/subscribe"
-                      ? menu + " " + isActiveClassName
-                      : menu
-                  }
-                >
-                  Subscribe
-                </div>
-              </Link>
-              <Link href="/about" passHref>
-                <div
-                  title="About"
-                  className={
-                    router.pathname == "/about"
-                      ? menu + " " + isActiveClassName
-                      : menu
-                  }
-                >
-                  About
-                </div>
-              </Link>
-            </nav>
-          </hgroup>
-
-          <span className="cursor-pointer sm:hidden">
-            <svg
-              role="img"
-              className="block w-6 h-6 align-middle text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              style={{ fill: "currentcolor" }}
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-                className="cursor-pointer"
-              />
-            </svg>
-          </span>
-          <span
-            className="hidden absolute top-0 right-0 mt-6 mr-4 text-white cursor-pointer sm:hidden"
-            style={{ display: "none" }}
+          <button
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            type="button"
+            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-default"
+            aria-expanded="false"
           >
             <svg
-              role="img"
-              className="block w-6 h-6 align-middle"
-              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              aria-hidden="true"
+              fill="currentColor"
               viewBox="0 0 20 20"
-              style={{ fill: "currentcolor" }}
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-                className="cursor-pointer"
-              />
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
             </svg>
-          </span>
+          </button>
+          <div
+            class={clx({
+              "w-full md:block md:w-auto": true,
+              hidden: !isNavOpen,
+              block: isNavOpen,
+            })}
+          >
+            <ul class="flex text-center flex-col gap-5 p-4 md:p-0 mt-4  rounded-lg border border-slate-600 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
+              {menuData.map(({ href, title }) => (
+                <li>
+                  <Link href={href}>
+                    <div
+                      title={title}
+                      className={
+                        router.pathname === href
+                          ? menu + " " + isActiveClassName
+                          : menu
+                      }
+                    >
+                      {title}
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </header>

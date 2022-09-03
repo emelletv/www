@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { FaYoutube, FaTwitch } from "react-icons/fa";
+import { FaYoutube, FaTwitch, FaTwitter, FaPatreon } from "react-icons/fa";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import constants from "../constants";
@@ -21,7 +21,6 @@ export const getStaticProps = async () => {
     .then((response) => response.json())
     .then((data) => {
       const uploadsId = data.items[0].contentDetails.relatedPlaylists.uploads;
-      console.log(data);
       return fetch(
         `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${uploadsId}&key=${YOUTUBE_API_KEY}&part=snippet&maxResults=50`
       )
@@ -51,6 +50,7 @@ const Host = ({ name, twitter, avatar }) => {
         <p className="text-slate-200 text-base">{name}</p>
       </div>
       <a
+        target={"_blank"}
         className="text-slate-300 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-3xl"
         href={twitter}
       >
@@ -64,8 +64,8 @@ const IntroSection = () => {
   return (
     <section className="bg-slate-800 pb-16 mb-8 pt-8">
       <div className="layout">
-        <div className="flex gap-4">
-          <div className="w-full max-w-[50%]">
+        <div className="flex gap-8 md:gap-4 flex-col md:flex-row">
+          <div className="w-full md:max-w-[50%]">
             <h1 className="mb-6 text-4xl leading-9 text-slate-200">EmelleTV</h1>
             <h2 className="mb-3 text-xl text-slate-200">
               The show to talk about{" "}
@@ -75,11 +75,10 @@ const IntroSection = () => {
               ecosystems
             </h2>
             <h3 className="text-base text-slate-400">
-              Where we bring cool members thosecommunities to ask silly
-              questions, learn from them and have fun with Hindley-Milner type
-              system.
+              We bring cool members those communities to ask silly questions,
+              learn from them and have fun with Hindley-Milner type system.
             </h3>
-            <div className="mt-14">
+            <div className="md:mt-14 mt-8">
               <div className="flex text-xs items-center justify-start gap-4">
                 <ListenAtButton
                   Icon={FaTwitch}
@@ -89,13 +88,13 @@ const IntroSection = () => {
                 <ListenAtButton
                   Icon={FaYoutube}
                   text="YouTube"
-                  href={constants.youtubee}
+                  href={constants.youtube}
                 />
               </div>
             </div>
           </div>
 
-          <div className="w-full max-w-[50%] flex flex-col gap-2 items-end">
+          <div className="w-full md:max-w-[50%] flex flex-col gap-2 md:items-end">
             <div>
               <div className="mt-1 flex text-xs items-center justify-start gap-4">
                 <Host
@@ -121,9 +120,8 @@ const ListenAtButton = ({ href, text, Icon, heading }) => {
   return (
     <a
       href={href}
-      className="flex items-center py-2 pr-6 pl-2 leading-6 no-underline whitespace-nowrap bg-white rounded-md border border-gray-400 border-solid transition cursor-pointer box-border"
+      className="flex items-center gap-2 py-2 pr-6 pl-2 leading-6 no-underline whitespace-nowrap bg-white rounded-md border border-gray-400 border-solid transition cursor-pointer box-border"
       target="_blank"
-      style={{ transform: "matrix(1, 0, 0, 1, 0, -2)" }}
       rel="noreferrer"
     >
       <Icon className="block flex-shrink-0 mr-2 w-auto h-8 text-gray-800 align-middle cursor-pointer" />
@@ -137,13 +135,19 @@ const ListenAtButton = ({ href, text, Icon, heading }) => {
   );
 };
 
-const WhereToWatch = () => (
-  <aside className="order-2 pt-2 leading-6 text-gray-800">
+const H3 = (props) => {
+  return (
     <h3 className="flex items-end mx-0 mt-0 mb-4 text-sm font-semibold tracking-wide leading-none text-gray-500 uppercase">
       <span className="mr-0 ml-0 font-semibold leading-3 uppercase">
-        Where to watch
+        {props.children}
       </span>
     </h3>
+  );
+};
+
+const WhereToWatch = () => (
+  <aside className="hidden md:block order-2 pt-2 leading-6 text-gray-800">
+    <H3>social media</H3>
     <div className="flex flex-col gap-2">
       <ListenAtButton
         heading="Watch us live on"
@@ -155,7 +159,19 @@ const WhereToWatch = () => (
         heading="Watch past episodes on"
         Icon={FaYoutube}
         text="YouTube"
-        href={constants.youtubee}
+        href={constants.youtube}
+      />
+      <ListenAtButton
+        heading="Read us on"
+        Icon={FaTwitter}
+        text="Twitter"
+        href={constants.twitter}
+      />
+      <ListenAtButton
+        heading="Support us on"
+        Icon={FaPatreon}
+        text="Patreon"
+        href={constants.patreon}
       />
     </div>
   </aside>
@@ -175,7 +191,7 @@ const Main = ({ children }) => {
             style={{ minHeight: "400px" }}
           >
             <div
-              className="grid grid-cols-2 grid-flow-col leading-6 text-gray-800 md:gap-y-8"
+              className="flex leading-6 text-gray-800 md:gap-y-8"
               style={{
                 gap: "1.5rem 3rem",
                 gridTemplateColumns: "auto 14rem",
@@ -207,7 +223,12 @@ export const Episode = ({
   >
     {thumbnail && thumbnail.url ? (
       <div className="mask-thumbnail rounded-t-md">
-        <Image width={thumbnail.width} height={thumbnail.height} src={thumbnail.url} alt={title} />
+        <Image
+          width={thumbnail.width}
+          height={thumbnail.height}
+          src={thumbnail.url}
+          alt={title}
+        />
       </div>
     ) : null}
 
