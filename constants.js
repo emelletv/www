@@ -1,4 +1,6 @@
 export default {
+  url: "emelle.tv",
+  httpUrl: "https://emelle.tv",
   mail: "emelletvshow@gmail.com",
   youtube: {
     url: "https://www.youtube.com/channel/UCvVVfCa7-nzSuCdMKXnNJNQ",
