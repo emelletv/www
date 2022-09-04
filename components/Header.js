@@ -26,6 +26,7 @@ const SmallLogo = React.forwardRef(() => {
 const menuData = [
   { href: "/", title: "Home" },
   { href: "/about", title: "About" },
+  /* { href: "/sponsor", title: "Sponsor" }, */
 ];
 
 export const Header = () => {

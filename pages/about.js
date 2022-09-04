@@ -35,6 +35,7 @@ const Main = ({ children }) => {
 
 const About = () => (
   <Main>
+    <h1 className="mb-6 text-4xl leading-10 text-slate-800">About us</h1>
     <div className="order-1 text-lg leading-8 text-gray-800 md:row-span-1">
       EmelleTV is a show where we bring brains from the ML community to talk
       about their visions and goals in a very casual conversation.
@@ -69,11 +70,11 @@ const About = () => (
   </Main>
 );
 
-export default function Home() {
+export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>EmelleTV</title>
+        <title>EmelleTV | About us</title>
       </Head>
       <Header />
       <About />

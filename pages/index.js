@@ -290,7 +290,7 @@ const Episodes = ({ episodes }) => (
   </Main>
 );
 
-export default function Home(props) {
+export default function HomePage(props) {
   return (
     <>
       <Head>
