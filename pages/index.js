@@ -1,7 +1,9 @@
 import Head from "next/head";
-import { FaYoutube, FaTwitch, FaTwitter, FaPatreon } from "react-icons/fa";
+import { FaYoutube, FaTwitch } from "react-icons/fa";
 import { Header } from "../components/Header";
+import { Button as ListenAtButton } from "../components/Button";
 import { Footer } from "../components/Footer";
+import { Sidebar } from "../components/Sidebar";
 import constants from "../constants";
 import Image from "next/image";
 
@@ -81,14 +83,20 @@ const IntroSection = () => {
             <div className="md:mt-14 mt-8">
               <div className="flex text-xs items-center justify-start gap-4">
                 <ListenAtButton
+                  color="text-slate-300"
+                  backgroundColor={constants.twitch.brandColor}
+                  borderColor={constants.twitch.paleBrandColor}
                   Icon={FaTwitch}
                   text="Twitch"
-                  hrefy={constants.twitch}
+                  hrefy={constants.twitch.url}
                 />
                 <ListenAtButton
+                  color="text-slate-300"
+                  backgroundColor={constants.youtube.brandColor}
+                  borderColor={constants.youtube.paleBrandColor}
                   Icon={FaYoutube}
                   text="YouTube"
-                  href={constants.youtube}
+                  href={constants.youtube.url}
                 />
               </div>
             </div>
@@ -98,14 +106,14 @@ const IntroSection = () => {
             <div>
               <div className="mt-1 flex text-xs items-center justify-start gap-4">
                 <Host
-                  name={constants.fakenickels.name}
-                  twitter={constants.fakenickels.twitter}
-                  avatar={constants.fakenickels.avatar}
+                  name={constants.authors.fakenickels.name}
+                  twitter={constants.authors.fakenickels.twitter}
+                  avatar={constants.authors.fakenickels.avatar}
                 />
                 <Host
-                  name={constants.davesnx.name}
-                  twitter={constants.davesnx.twitter}
-                  avatar={constants.davesnx.avatar}
+                  name={constants.authors.davesnx.name}
+                  twitter={constants.authors.davesnx.twitter}
+                  avatar={constants.authors.davesnx.avatar}
                 />
               </div>
             </div>
@@ -115,67 +123,6 @@ const IntroSection = () => {
     </section>
   );
 };
-
-const ListenAtButton = ({ href, text, Icon, heading }) => {
-  return (
-    <a
-      href={href}
-      className="flex items-center gap-2 py-2 pr-6 pl-2 leading-6 no-underline whitespace-nowrap bg-white rounded-md border border-gray-400 border-solid transition cursor-pointer box-border"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <Icon className="block flex-shrink-0 mr-2 w-auto h-8 text-gray-800 align-middle cursor-pointer" />
-      <label className="flex-shrink-0 text-gray-800 cursor-pointer">
-        <span className="block text-2xs font-medium leading-none mb-1 text-gray-400 uppercase">
-          {heading}
-        </span>
-        <b className="block mt-px text-base font-bold leading-none">{text}</b>
-      </label>
-    </a>
-  );
-};
-
-const H3 = (props) => {
-  return (
-    <h3 className="flex items-end mx-0 mt-0 mb-4 text-sm font-semibold tracking-wide leading-none text-gray-500 uppercase">
-      <span className="mr-0 ml-0 font-semibold leading-3 uppercase">
-        {props.children}
-      </span>
-    </h3>
-  );
-};
-
-const WhereToWatch = () => (
-  <aside className="hidden md:block order-2 pt-2 leading-6 text-gray-800">
-    <H3>social media</H3>
-    <div className="flex flex-col gap-2">
-      <ListenAtButton
-        heading="Watch us live on"
-        Icon={FaTwitch}
-        text="Twitch"
-        href={constants.twitch}
-      />
-      <ListenAtButton
-        heading="Watch past episodes on"
-        Icon={FaYoutube}
-        text="YouTube"
-        href={constants.youtube}
-      />
-      <ListenAtButton
-        heading="Read us on"
-        Icon={FaTwitter}
-        text="Twitter"
-        href={constants.twitter}
-      />
-      <ListenAtButton
-        heading="Support us on"
-        Icon={FaPatreon}
-        text="Patreon"
-        href={constants.patreon}
-      />
-    </div>
-  </aside>
-);
 
 const Main = ({ children }) => {
   return (
@@ -200,7 +147,7 @@ const Main = ({ children }) => {
               <div className="order-1 leading-6 text-gray-800 md:row-span-1">
                 <section>{children}</section>
               </div>
-              <WhereToWatch />
+              <Sidebar />
             </div>
           </section>
         </section>

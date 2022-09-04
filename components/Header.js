@@ -25,7 +25,6 @@ const SmallLogo = React.forwardRef(() => {
 
 const menuData = [
   { href: "/", title: "Home" },
-  { href: "/subscribe", title: "Subscribe" },
   { href: "/about", title: "About" },
 ];
 
@@ -47,12 +46,12 @@ export const Header = () => {
           <button
             onClick={() => setIsNavOpen(!isNavOpen)}
             type="button"
-            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-default"
             aria-expanded="false"
           >
             <svg
-              class="w-6 h-6"
+              className="w-6 h-6"
               aria-hidden="true"
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -66,15 +65,15 @@ export const Header = () => {
             </svg>
           </button>
           <div
-            class={clx({
+            className={clx({
               "w-full md:block md:w-auto": true,
               hidden: !isNavOpen,
               block: isNavOpen,
             })}
           >
-            <ul class="flex text-center flex-col gap-5 p-4 md:p-0 mt-4  rounded-lg border border-slate-600 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
+            <ul className="flex text-center flex-col gap-5 p-4 md:p-0 mt-4  rounded-lg border border-slate-600 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
               {menuData.map(({ href, title }) => (
-                <li>
+                <li key={href}>
                   <Link href={href}>
                     <div
                       title={title}
