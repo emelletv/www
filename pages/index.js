@@ -53,6 +53,7 @@ const Host = ({ name, twitter, avatar }) => {
       </div>
       <a
         target={"_blank"}
+        rel="noreferrer"
         className="text-slate-300 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-3xl"
         href={twitter}
       >
@@ -167,6 +168,7 @@ export const Episode = ({
   <a
     href={url}
     target="_blank"
+    rel="noreferrer"
     aria-label={`View episode: ${title}`}
     className="cursor-pointer"
   >

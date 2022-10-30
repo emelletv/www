@@ -9,7 +9,7 @@ const clx = (classNames) => {
     .join(" ");
 };
 
-const SmallLogo = React.forwardRef(() => {
+const SmallLogo = () => {
   return (
     <div className="flex justify-center items-center max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28">
       <Image
@@ -21,7 +21,7 @@ const SmallLogo = React.forwardRef(() => {
       />
     </div>
   );
-});
+};
 
 const menuData = [
   { href: "/", title: "Home" },
@@ -40,7 +40,7 @@ export const Header = () => {
     <header className="relative py-6 sm:pt-8 sm:pb-8 bg-slate-800">
       <div className="layout">
         <div className="flex items-center justify-between flex-wrap gap-y-6">
-          <Link href="/">
+          <Link href="/" passHref>
             <SmallLogo />
           </Link>
 
@@ -75,7 +75,7 @@ export const Header = () => {
             <ul className="flex text-center flex-col gap-5 p-4 md:p-0 mt-4  rounded-lg border border-slate-600 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
               {menuData.map(({ href, title }) => (
                 <li key={href}>
-                  <Link href={href}>
+                  <Link href={href} passHref>
                     <div
                       title={title}
                       className={
