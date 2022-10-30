@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.layout {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .layout {
+    padding: 0 1.5rem;
+  }
+}
+
+.mask-thumbnail {
+  position: relative;
+  height: 0;
+  padding-bottom: 56%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.mask-thumbnail img {
+  padding: 8px !important;
+  transform: translateY(-12%) !important;
+  background: black;
+}
