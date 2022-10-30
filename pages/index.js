@@ -164,110 +164,71 @@ export const Episode = ({
   date,
   index,
 }) => (
-  <div
-    className="flex flex-col items-start mb-8 text-slate-200 border-solid box-border border-x-0 border-y bg-black"
-    style={{
-      borderWidth: 0,
-      boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
-      borderRadius: "8px",
-    }}
+  <a
+    href={url}
+    target="_blank"
+    aria-label={`View episode: ${title}`}
+    className="cursor-pointer"
   >
-    {thumbnail && thumbnail.url ? (
-      <div className="mask-thumbnail">
-        <Image
-          width={thumbnail.width}
-          height={thumbnail.height}
-          src={thumbnail.url}
-          alt={title}
-        />
-      </div>
-    ) : null}
+    <div
+      className="flex flex-col items-start mb-8 text-slate-200 border-solid box-border border-x-0 border-y bg-black"
+      style={{
+        borderWidth: 0,
+        boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
+        borderRadius: "8px",
+      }}
+    >
+      {thumbnail && thumbnail.url ? (
+        <div className="mask-thumbnail">
+          <Image
+            width={thumbnail.width}
+            height={thumbnail.height}
+            src={thumbnail.url}
+            alt={title}
+          />
+        </div>
+      ) : null}
 
-    <div className="flex gap-4 py-3 px-4 items-center">
-      <button
-        title="Play Episode"
-        role="button"
-        className="flex-shrink-0 p-0 m-0 w-10 h-10 text-center normal-case bg-transparent bg-none duration-200 ease-in-out cursor-pointer text-slate-200 hover:opacity-90"
-        style={{
-          fontSize: "128%",
-          transitionProperty:
-            "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter",
-        }}
-      >
-        <svg
-          role="img"
-          className="block align-middle"
-          viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ fill: "currentcolor" }}
+      <div className="flex gap-4 py-3 px-4 items-center">
+        <button
+          title="Play Episode"
+          role="button"
+          className="flex-shrink-0 p-0 m-0 w-10 h-10 text-center normal-case bg-transparent bg-none duration-200 ease-in-out text-slate-200 hover:opacity-90"
+          style={{
+            fontSize: "128%",
+            transitionProperty:
+              "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter",
+          }}
         >
-          <path
-            fillRule="evenodd"
-            d="M8,16 C12.4183,16 16,12.4183 16,8 C16,3.58172 12.4183,0 8,0 C3.58172,0 0,3.58172 0,8 C0,12.4183 3.58172,16 8,16 Z M7.5547,5.16795 C7.24784,4.96338 6.8533,4.94431 6.52814,5.11833 C6.20298,5.29235 6,5.63121 6,6.00000106 L6,10.0000011 C6,10.3688 6.20298,10.7077 6.52814,10.8817 C6.8533,11.0557 7.24784,11.0366 7.5547,10.8321 L10.5547,8.8321 C10.8329,8.6466 11,8.3344 11,8.00000106 C11,7.66565 10.8329,7.35342 10.5547,7.16795 L7.5547,5.16795 Z"
-            className=""
-          />
-        </svg>
-      </button>
-      <button
-        title="Pause Episode"
-        role="button"
-        className="hidden flex-shrink-0 p-0 m-0 w-10 h-10 text-center normal-case bg-transparent bg-none duration-200 ease-in-out cursor-pointer text-slate-600 hover:opacity-90"
-        style={{
-          display: "none",
-          fontSize: "128%",
-          transitionProperty:
-            "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter",
-        }}
-      >
-        <svg
-          role="img"
-          className="block align-middle"
-          viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ fill: "currentcolor" }}
-        >
-          <path
-            fillRule="evenodd"
-            d="M16,8 C16,12.4183 12.4183,16 8,16 C3.58172,16 0,12.4183 0,8 C0,3.58172 3.58172,0 8,0 C12.4183,0 16,3.58172 16,8 Z M5,6 C5,5.44772 5.44772,5 6,5 C6.55228,5 7,5.44772 7,6 L7,10 C7,10.5523 6.55228,11 6,11 C5.44772,11 5,10.5523 5,10 L5,6 Z M10,5 C9.4477,5 9,5.44772 9,6 L9,10 C9,10.5523 9.4477,11 10,11 C10.5523,11 11,10.5523 11,10 L11,6 C11,5.44772 10.5523,5 10,5 Z"
-            className=""
-          />
-        </svg>
-      </button>
-      <div className="flex-grow">
-        <h2 className="mx-0 mt-0 mb-1 text-lg font-bold">
-          <a
-            href={url}
-            aria-label={`View episode: ${title}`}
-            className="cursor-pointer hover:underline"
+          <svg
+            role="img"
+            className="block align-middle"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ fill: "currentcolor" }}
           >
-            {title}
-          </a>
-        </h2>
-        <p className="mx-0 mt-0 mb-1 text-base leading-7 text-gray-700">
-          {description}
-        </p>
-        <div className="flex flex-wrap gap-x-2 text-xs leading-4 text-gray-400">
-          <span className="text-sm leading-5">{"#" + index}</span>
-          <span className="text-sm leading-5">/</span>
-          <time className="text-sm leading-5">
-            {new Date(date).toLocaleDateString()}
-          </time>
+            <path
+              fillRule="evenodd"
+              d="M8,16 C12.4183,16 16,12.4183 16,8 C16,3.58172 12.4183,0 8,0 C3.58172,0 0,3.58172 0,8 C0,12.4183 3.58172,16 8,16 Z M7.5547,5.16795 C7.24784,4.96338 6.8533,4.94431 6.52814,5.11833 C6.20298,5.29235 6,5.63121 6,6.00000106 L6,10.0000011 C6,10.3688 6.20298,10.7077 6.52814,10.8817 C6.8533,11.0557 7.24784,11.0366 7.5547,10.8321 L10.5547,8.8321 C10.8329,8.6466 11,8.3344 11,8.00000106 C11,7.66565 10.8329,7.35342 10.5547,7.16795 L7.5547,5.16795 Z"
+            />
+          </svg>
+        </button>
+        <div className="flex-grow">
+          <h2 className="mx-0 mt-0 mb-1 text-lg font-bold">{title}</h2>
+          <p className="mx-0 mt-0 mb-1 text-base leading-7 text-gray-700">
+            {description}
+          </p>
+          <div className="flex flex-wrap gap-x-2 text-xs leading-4 text-gray-400">
+            <span className="text-sm leading-5">{"#" + index}</span>
+            <span className="text-sm leading-5">/</span>
+            <time className="text-sm leading-5">
+              {new Date(date).toLocaleDateString()}
+            </time>
+          </div>
         </div>
       </div>
-      <a
-        href={`https://www.youtube.com/watch?v=${url}&ab_channel=EmelleTV`}
-        className="hidden flex-shrink-0 w-12 h-12 cursor-pointer sm:h-20 sm:w-20"
-      >
-        <Image
-          src="/logo.png"
-          className="block w-12 max-w-full h-12 align-middle md:h-20 md:w-20"
-          alt="Logo"
-          width="100"
-          height="100"
-        />
-      </a>
     </div>
-  </div>
+  </a>
 );
 
 const Episodes = ({ episodes }) => (
@@ -282,8 +243,8 @@ const Episodes = ({ episodes }) => (
             key={episode.position}
             title={episode.title}
             date={episode.publishedAt}
-            index={index + 1}
-            url={episode.resourceId.videoId}
+            index={episodes.length - index + 1}
+            url={`https://www.youtube.com/watch?v=${episode.resourceId.videoId}&ab_channel=EmelleTV`}
             thumbnail={episode.thumbnails.standard}
             /* Current descriptions are formatted for YouTube, they don't make sense. If we get some subtitles, we should add them here. */
             description={""}
