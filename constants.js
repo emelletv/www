@@ -22,12 +22,12 @@ export default {
     davesnx: {
       name: "David Sancho",
       twitter: "https://twitter.com/davesnx",
-      avatar: "https://avatars.githubusercontent.com/u/3763599?v=4",
+      avatar: "/davesnx-avatar.png",
     },
     fakenickels: {
       name: "Gabriel R. Abreu",
       twitter: "https://twitter.com/fakenickels",
-      avatar: "https://avatars.githubusercontent.com/u/1283200?v=4",
+      avatar: "/fakenickels-avatar.png",
     },
   },
 };
