@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 const clx = (classNames) => {
   return Object.keys(classNames)
@@ -12,7 +11,7 @@ const clx = (classNames) => {
 const SmallLogo = () => {
   return (
     <div className="flex justify-center items-center max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28">
-      <Image
+      <img
         src="/logo.png"
         alt="Logo"
         className="block max-w-xs h-auto max-h-20 align-middle lg:max-h-32 md:max-h-28"

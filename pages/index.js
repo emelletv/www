@@ -5,7 +5,6 @@ import { Button as ListenAtButton } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Sidebar } from "../components/Sidebar";
 import constants from "../constants";
-import Image from "next/image";
 
 const colors = {
   OCaml: "rgb(238, 106, 26)",
@@ -48,7 +47,7 @@ const Host = ({ name, twitter, avatar }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <div className="flex flex-col items-center justify-center gap-2">
-        <Image src={avatar} alt={name + " face"} width="200" height="250" />
+        <img src={avatar} alt={name + " face"} width="200" height="250" />
         <p className="text-slate-200 text-base">{name}</p>
       </div>
       <a
@@ -182,7 +181,7 @@ export const Episode = ({
     >
       {thumbnail && thumbnail.url ? (
         <div className="mask-thumbnail">
-          <Image
+          <img
             width={thumbnail.width}
             height={thumbnail.height}
             src={thumbnail.url}
