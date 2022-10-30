@@ -45,9 +45,11 @@ a {
   height: 0;
   padding-bottom: 56%;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .mask-thumbnail img {
-  width: 100%;
-  transform: translateY(-12.5%) !important;
+  padding: 8px !important;
+  transform: translateY(-12%) !important;
+  background: black;
 }

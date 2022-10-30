@@ -165,11 +165,15 @@ export const Episode = ({
   index,
 }) => (
   <div
-    className="flex flex-col items-start mb-8 text-slate-200 border-solid box-border border-x-0 border-y rounded-md bg-gray-900"
-    style={{ borderWidth: 0, boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px" }}
+    className="flex flex-col items-start mb-8 text-slate-200 border-solid box-border border-x-0 border-y bg-black"
+    style={{
+      borderWidth: 0,
+      boxShadow: "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
+      borderRadius: "8px",
+    }}
   >
     {thumbnail && thumbnail.url ? (
-      <div className="mask-thumbnail rounded-t-md">
+      <div className="mask-thumbnail">
         <Image
           width={thumbnail.width}
           height={thumbnail.height}
