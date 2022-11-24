@@ -21,13 +21,13 @@ export const Sidebar = () => (
         heading="Read us on"
         Icon={FaTwitter}
         text="Twitter"
-        href={constants.twitter}
+        href={constants.twitter.url}
       />
       <Button
         heading="Support us on"
         Icon={FaPatreon}
         text="Patreon"
-        href={constants.patreon}
+        href={constants.patreon.url}
       />
     </div>
   </aside>
