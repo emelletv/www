@@ -97,7 +97,7 @@ const Host = ({ name, twitter, avatar }) => {
 
 const IntroSection = () => {
   return (
-    <section className="bg-slate-800 pb-16 mb-8 pt-8">
+    <section className="bg-slate-800 pb-8 pt-8">
       <div className="layout">
         <div className="flex gap-8 md:gap-4 flex-col md:flex-row">
           <div className="w-full md:max-w-[50%]">
@@ -114,7 +114,7 @@ const IntroSection = () => {
               learn from them and have fun with Hindley-Milner type system.
             </h3>
             <div className="md:mt-14 mt-8">
-              <div className="flex text-xs items-center justify-start gap-4">
+              <div className="flex items-center justify-center md:justify-start gap-4">
                 <Button
                   color="text-slate-200 hover:brightness-125"
                   backgroundColor={"bg-twitch"}
@@ -133,9 +133,9 @@ const IntroSection = () => {
             </div>
           </div>
 
-          <div className="w-full md:max-w-[50%] flex flex-col gap-2 md:items-end">
+          <div className="w-full md:max-w-[50%] flex flex-col gap-2 items-center md:items-end">
             <div>
-              <div className="mt-1 flex text-xs items-center justify-start gap-4">
+              <div className="flex text-xs items-center justify-start gap-4">
                 <Host
                   name={constants.authors.fakenickels.name}
                   twitter={constants.authors.fakenickels.twitter}
@@ -159,13 +159,10 @@ const Main = ({ children }) => {
   return (
     <>
       <IntroSection />
-      <main className="layout relative leading-6 text-gray-800 lg:px-8 sm:-top-12 sm:mx-auto sm:px-4">
-        <section
-          className="pt-6 leading-6 text-gray-800 bg-white border-t-0 border-b border-gray-200
-      border-solid sm:rounded sm:border-0 md:pt-8 box-border border-x-0"
-        >
+      <div className="mt-8">
+        <main className="layout relative leading-6 text-gray-800">
           <section
-            className="px-4 leading-6 text-gray-800 md:px-8"
+            className="leading-6 text-gray-800"
             style={{ minHeight: "400px" }}
           >
             <div
@@ -175,14 +172,14 @@ const Main = ({ children }) => {
                 gridTemplateColumns: "auto 14rem",
               }}
             >
-              <div className="order-1 leading-6 text-gray-800 md:row-span-1">
+              <div className="w-full leading-6 text-gray-800 md:row-span-1">
                 <section>{children}</section>
               </div>
               <Sidebar />
             </div>
           </section>
-        </section>
-      </main>
+        </main>
+      </div>
     </>
   );
 };
@@ -205,12 +202,7 @@ export const Episode = ({
     <div className="flex flex-col items-start text-slate-200 rounded-md bg-black hover:brightness-125">
       {thumbnail && thumbnail.url ? (
         <div className="mask-thumbnail">
-          <img
-            width={thumbnail.width}
-            height={thumbnail.height}
-            src={thumbnail.url}
-            alt={title}
-          />
+          <img src={thumbnail.url} alt={title} />
         </div>
       ) : null}
 

@@ -8,23 +8,24 @@ const clx = (classNames) => {
     .join(" ");
 };
 
-const SmallLogo = ({ href, ...rest }) => {
-  return (
-    <a
-      href={href}
-      {...rest}
-      className="flex justify-center items-center max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28"
-    >
-      <img
-        src="/logo.png"
-        alt="Logo"
-        className="block max-w-xs h-auto max-h-20 align-middle lg:max-h-32 md:max-h-28"
-        width="46"
-        height="46"
-      />
-    </a>
-  );
-};
+const SmallLogo = React.forwardRef(({ href, ...rest }, ref) => (
+  <a
+    href={href}
+    ref={ref}
+    {...rest}
+    className="flex justify-center items-center max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28"
+  >
+    <img
+      src="/logo.png"
+      alt="Logo"
+      className="block max-w-xs h-auto max-h-20 align-middle lg:max-h-32 md:max-h-28"
+      width="46"
+      height="46"
+    />
+  </a>
+));
+
+SmallLogo.displayName = "SmallLogo";
 
 const menuData = [
   { href: "/", title: "Home" },

@@ -3,7 +3,7 @@ import { FaYoutube, FaTwitch, FaTwitter, FaPatreon } from "react-icons/fa";
 import { Button } from "./Button";
 
 export const Sidebar = () => (
-  <aside className="hidden md:block order-2 pt-2 leading-6 text-gray-800">
+  <aside className="w-[400px] hidden md:block leading-6 text-gray-800">
     <div className="flex flex-col gap-2">
       <Button
         heading="Watch us live on"
