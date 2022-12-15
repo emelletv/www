@@ -15,14 +15,8 @@ const Main = ({ children }) => {
           className="leading-6 text-gray-800"
           style={{ minHeight: "400px" }}
         >
-          <div
-            className="grid md:grid-cols-2 md:grid-flow-col leading-6 text-gray-800 md:gap-y-8"
-            style={{
-              gap: "1.5rem 3rem",
-              gridTemplateColumns: "auto 14rem",
-            }}
-          >
-            <div className="leading-6 text-gray-800 md:row-span-1">
+          <div className="flex leading-6 text-gray-800">
+            <div className="w-full leading-6 text-gray-800">
               <section>{children}</section>
             </div>
             <Sidebar />
@@ -36,7 +30,7 @@ const Main = ({ children }) => {
 const About = () => (
   <Main>
     <h1 className="mb-6 text-4xl leading-10 text-slate-800">About us</h1>
-    <div className="text-lg leading-8 text-gray-800 md:row-span-1">
+    <div className="text-lg leading-8 text-gray-800">
       EmelleTV is a show where we bring brains from the ML community to talk
       about their visions and goals in a very casual conversation.
       <br className="leading-8" />
