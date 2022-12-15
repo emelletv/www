@@ -206,7 +206,7 @@ export const Episode = ({
             <span className="text-sm leading-5">{"#" + index}</span>
             <span className="text-sm leading-5">/</span>
             <time className="text-sm leading-5">
-              {new Date(date).toLocaleDateString()}
+              {new Date(date).toLocaleDateString("en-US")}
             </time>
           </div>
         </div>
