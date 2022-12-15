@@ -161,23 +161,12 @@ const Main = ({ children }) => {
       <IntroSection />
       <div className="mt-8">
         <main className="layout relative leading-6 text-gray-800">
-          <section
-            className="leading-6 text-gray-800"
-            style={{ minHeight: "400px" }}
-          >
-            <div
-              className="flex leading-6 text-gray-800 md:gap-y-8"
-              style={{
-                gap: "1.5rem 3rem",
-                gridTemplateColumns: "auto 14rem",
-              }}
-            >
-              <div className="w-full leading-6 text-gray-800 md:row-span-1">
-                <section>{children}</section>
-              </div>
-              <Sidebar />
+          <div className="flex leading-6 text-gray-800 gap-8 md:gap-y-8">
+            <div className="w-full leading-6 text-gray-800 md:row-span-1">
+              <section>{children}</section>
             </div>
-          </section>
+            <Sidebar />
+          </div>
         </main>
       </div>
     </>
