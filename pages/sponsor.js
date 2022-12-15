@@ -53,7 +53,7 @@ const Main = ({ children }) => {
               gridTemplateColumns: "auto 14rem",
             }}
           >
-            <div className="order-1 leading-6 text-gray-800 md:row-span-1">
+            <div className="leading-6 text-gray-800 md:row-span-1">
               <section>{children}</section>
             </div>
             <Sidebar />
@@ -73,7 +73,7 @@ export default function SponsorPage() {
       <Header />
       <Main>
         <h1 className="mb-6 text-4xl leading-10 text-slate-800">Sponsor</h1>
-        <div className="order-1 text-lg leading-8 text-gray-800 md:row-span-1">
+        <div className="text-lg leading-8 text-gray-800 md:row-span-1">
           EmelleTV Patreon page
         </div>
       </Main>
