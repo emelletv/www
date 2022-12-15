@@ -1,4 +1,4 @@
-export default {
+const constants = {
   url: "emelle.tv",
   httpUrl: "https://emelle.tv",
   mail: "emelletvshow@gmail.com",
@@ -31,3 +31,5 @@ export default {
     },
   },
 };
+
+export default constants;

@@ -60,7 +60,7 @@ const About = () => (
       Feedbacks, questions, schedule an interview
       <br className="leading-8" />
       <a
-        href={constants.twitter}
+        href={constants.twitter.url}
         className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
       >
         DM us on Twitter
