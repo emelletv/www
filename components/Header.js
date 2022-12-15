@@ -18,7 +18,7 @@ const SmallLogo = React.forwardRef(({ href, ...rest }, ref) => (
     <img
       src="/logo.png"
       alt="Logo"
-      className="block max-w-xs h-auto max-h-20 align-middle lg:max-h-32 md:max-h-28"
+      className="block max-w-xs h-auto max-h-20 align-middle lg:max-h-32 md:max-h-28 hover:brightness-110"
       width="46"
       height="46"
     />
