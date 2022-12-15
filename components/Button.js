@@ -11,7 +11,7 @@ export const Button = ({
     <a
       href={href}
       className={
-        "flex items-center gap-2 py-2 pr-4 pl-4 leading-6 no-underline whitespace-nowrap rounded-md transition cursor-pointer box-border " +
+        "flex items-center gap-2 py-2 pr-4 pl-4 leading-6 no-underline whitespace-nowrap rounded-md transition cursor-pointer box-border hover:brightness-125 " +
         color
       }
       style={{
@@ -27,9 +27,11 @@ export const Button = ({
         }
       />
       <label className="flex-shrink-0 cursor-pointer">
-        <span className="block text-2xs font-medium leading-none mb-1 text-gray-400 uppercase">
-          {heading}
-        </span>
+        {heading ? (
+          <span className="block text-2xs font-medium leading-none mb-1 text-gray-400 uppercase">
+            {heading}
+          </span>
+        ) : null}
         <b className="block mt-px text-base font-bold leading-none">{text}</b>
       </label>
     </a>
