@@ -7,9 +7,9 @@ import constants from "../constants";
 const Main = ({ children }) => {
   return (
     <main className="layout relative flex-1">
-      <section className="pt-6 text-gray-800 bg-white md:pt-8">
-        <div className="flex text-gray-800">
-          <div className="w-full text-gray-800">
+      <section className="pt-6 bg-white md:pt-8">
+        <div className="flex gap-8">
+          <div className="w-full prose prose-h1:text-4xl prose-h1:leading-10 prose-h1:font-normal prose-h2:font-normal prose-h3:font-normal prose-a:font-semibold prose-a:underline prose-a:cursor-pointer prose-a:text-neutral-800">
             <section>{children}</section>
           </div>
           <Sidebar />
@@ -21,38 +21,24 @@ const Main = ({ children }) => {
 
 const About = () => (
   <Main>
-    <h1 className="mb-6 text-4xl leading-10 text-slate-800">About us</h1>
-    <div className="text-lg leading-8 text-gray-800">
+    <h1>About us</h1>
+    <p>
       EmelleTV is a show where we bring brains from the ML community to talk
-      about their visions and goals in a very casual conversation.
-      <br className="leading-8" />
-      <br className="leading-8" />
-      EmelleTV is hosted by{" "}
-      <a
-        href={constants.authors.davesnx.twitter}
-        className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
-      >
+      about their visions and goals in a very casual conversation. EmelleTV is
+      hosted by{" "}
+      <a href={constants.authors.davesnx.twitter}>
         {constants.authors.davesnx.name}
       </a>{" "}
       and{" "}
-      <a
-        href={constants.authors.fakenickels.twitter}
-        className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
-      >
+      <a href={constants.authors.fakenickels.twitter}>
         {constants.authors.fakenickels.name}
       </a>
       .
-      <br className="leading-8" />
-      Feedbacks, questions, schedule an interview
-      <br className="leading-8" />
-      <a
-        href={constants.twitter.url}
-        className="font-semibold underline cursor-pointer text-neutral-800 hover:opacity-80"
-      >
-        DM us on Twitter
-      </a>
-      .
-    </div>
+      <p>
+        Feedbacks, questions, schedule an interview{" "}
+        <a href={constants.twitter.url}>DM us on Twitter</a>.
+      </p>
+    </p>
   </Main>
 );
 

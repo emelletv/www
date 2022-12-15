@@ -1,9 +1,6 @@
 import Head from "next/head";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-/* import { Sidebar } from "../components/Sidebar";
-import constants from "../constants";
-import Image from "next/image"; */
 
 /* export const getStaticProps = async () => {
   const PATREON_API_KEY = process.env.PATREON_API_KEY;
@@ -35,19 +32,39 @@ import Image from "next/image"; */
     .catch((error) => ({ props: { error, episodes: [] } }));
 }; */
 
-export default function SponsorPage() {
+const Main = ({ children }) => {
+  return (
+    <main className="layout relative flex-1">
+      <section className="pt-6 text-gray-800 bg-white md:pt-8">
+        <div className="flex text-gray-800">
+          <article className="w-full text-gray-800 prose prose-h1:text-4xl prose-h1:leading-10 prose-h1:font-normal prose-h2:font-normal prose-h3:font-normal prose-a:font-semibold prose-a:underline prose-a:cursor-pointer prose-a:text-neutral-800">
+            {children}
+          </article>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default function SponsorsPage() {
   return (
     <>
       <Head>
-        <title>EmelleTV | Sponsor</title>
+        <title>EmelleTV | Sponsors</title>
       </Head>
       <Header />
-      <div>
-        <h1 className="mb-6 text-4xl leading-10 text-slate-800">Sponsor</h1>
-        <div className="text-lg leading-8 text-gray-800 md:row-span-1">
-          EmelleTV Patreon page
-        </div>
-      </div>
+      <Main>
+        <h1>Sponsors</h1>
+        <p>
+          This page is dedicated to all our sponsors. We are grateful for your
+          support.
+        </p>
+        <h2>Sponsors</h2>
+        <p>
+          This page is dedicated to all our sponsors. We are grateful for your
+          support.
+        </p>
+      </Main>
       <Footer />
     </>
   );
