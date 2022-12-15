@@ -87,7 +87,7 @@ const IntroSection = () => {
                   backgroundColor={"bg-twitch"}
                   Icon={FaTwitch}
                   text="Twitch"
-                  hrefy={constants.twitch.url}
+                  href={constants.twitch.url}
                 />
                 <Button
                   color="text-slate-200 hover:brightness-125"
