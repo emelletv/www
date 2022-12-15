@@ -3,16 +3,16 @@ const constants = {
   httpUrl: "https://emelle.tv",
   mail: "emelletvshow@gmail.com",
   youtube: {
-    url: "https://www.youtube.com/channel/UCvVVfCa7-nzSuCdMKXnNJNQ",
     brandColor: "#af2c2c" /* "#FF0000" */,
+    url: "https://www.youtube.com/channel/UCvVVfCa7-nzSuCdMKXnNJNQ",
   },
   twitter: {
-    url: "https://twitter.com/emelletv",
     brandColor: "#1DA1F2",
+    url: "https://twitter.com/emelletv",
   },
   twitch: {
-    url: "https://www.twitch.tv/emelletv",
     brandColor: "#6441A4",
+    url: "https://www.twitch.tv/emelletv",
   },
   patreon: {
     brandColor: "#FF424D",

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { FaYoutube, FaTwitch } from "react-icons/fa";
 import { Header } from "../components/Header";
-import { Button as ListenAtButton } from "../components/Button";
+import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Sidebar } from "../components/Sidebar";
 import constants from "../constants";
@@ -82,18 +82,16 @@ const IntroSection = () => {
             </h3>
             <div className="md:mt-14 mt-8">
               <div className="flex text-xs items-center justify-start gap-4">
-                <ListenAtButton
-                  color="text-slate-300"
-                  backgroundColor={constants.twitch.brandColor}
-                  borderColor={constants.twitch.paleBrandColor}
+                <Button
+                  color="text-slate-200 hover:brightness-125"
+                  backgroundColor={"bg-twitch"}
                   Icon={FaTwitch}
                   text="Twitch"
                   hrefy={constants.twitch.url}
                 />
-                <ListenAtButton
-                  color="text-slate-300"
-                  backgroundColor={constants.youtube.brandColor}
-                  borderColor={constants.youtube.paleBrandColor}
+                <Button
+                  color="text-slate-200 hover:brightness-125"
+                  backgroundColor={"bg-youtube"}
                   Icon={FaYoutube}
                   text="YouTube"
                   href={constants.youtube.url}
