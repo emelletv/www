@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "16.0.0"
+    "node": "16.0.0 || 18.0.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 9898",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
