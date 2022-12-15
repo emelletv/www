@@ -8,9 +8,13 @@ const clx = (classNames) => {
     .join(" ");
 };
 
-const SmallLogo = () => {
+const SmallLogo = ({ href, ...rest }) => {
   return (
-    <div className="flex justify-center items-center max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28">
+    <a
+      href={href}
+      {...rest}
+      className="flex justify-center items-center max-w-xs max-h-20 cursor-pointer lg:max-h-32 md:max-h-28"
+    >
       <img
         src="/logo.png"
         alt="Logo"
@@ -18,7 +22,7 @@ const SmallLogo = () => {
         width="46"
         height="46"
       />
-    </div>
+    </a>
   );
 };
 
