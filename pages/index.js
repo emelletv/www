@@ -137,11 +137,6 @@ const IntroSection = () => {
             <div>
               <div className="flex text-xs items-center justify-start gap-4">
                 <Host
-                  name={constants.authors.fakenickels.name}
-                  twitter={constants.authors.fakenickels.twitter}
-                  avatar={constants.authors.fakenickels.avatar}
-                />
-                <Host
                   name={constants.authors.davesnx.name}
                   twitter={constants.authors.davesnx.twitter}
                   avatar={constants.authors.davesnx.avatar}

@@ -28,14 +28,19 @@ const About = () => (
       hosted by{" "}
       <a href={constants.authors.davesnx.twitter}>
         {constants.authors.davesnx.name}
-      </a>{" "}
-      and{" "}
-      <a href={constants.authors.fakenickels.twitter}>
-        {constants.authors.fakenickels.name}
       </a>
-      .
+      {"."}
       <p>
-        Feedbacks, questions, schedule an interview{" "}
+        We often chat casually about interesting topics related with OCaml,
+        Reason or ReScript ecosystems but open to any other engineering topic or
+        Programming language.
+      </p>
+      <p>
+        It lasts about 1 hour and a half and it is streamed live on Twitch, and
+        published the VOD in YouTube.
+      </p>
+      <p>
+        To give feedback, ask any question or suggest a guest. Please{" "}
         <a href={constants.twitter.url}>DM us on Twitter</a>.
       </p>
     </p>
