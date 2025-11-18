@@ -13,6 +13,7 @@ const Document = () => {
     <Html>
       <Head>
         <meta name="description" content={description} />
+        <meta name="ahrefs-site-verification" content="20136790116507aaa795de5eec1d1422178986a591d8349bd023017cc975c1f1" />
         <meta property="og:url" content={constants.httpUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
