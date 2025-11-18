@@ -101,7 +101,7 @@ const IntroSection = () => {
       <div className="layout">
         <div className="flex gap-8 md:gap-4 flex-col md:flex-row">
           <div className="w-full md:max-w-[50%]">
-            <h1 className="mb-6 text-4xl leading-9 text-slate-200">EmelleTV</h1>
+            <h1 className="mb-6 text-4xl leading-9 text-slate-200">emelle.tv</h1>
             <h2 className="mb-3 text-xl text-slate-200">
               The show to talk about{" "}
               <strong style={{ color: colors.OCaml }}>OCaml</strong>,{" "}
@@ -224,7 +224,7 @@ const Episodes = ({ episodes }) => (
               title={episode.title}
               date={episode.publishedAt}
               index={episodes.length - index + 1}
-              url={`https://www.youtube.com/watch?v=${episode.resourceId.videoId}&ab_channel=EmelleTV`}
+              url={`https://www.youtube.com/watch?v=${episode.resourceId.videoId}&ab_channel=emelle.tv`}
               thumbnail={episode.thumbnails.standard}
               /* Current descriptions are formatted for YouTube, they don't make sense. If we get some subtitles, we should add them here. */
               description={""}
@@ -240,7 +240,7 @@ export default function HomePage(props) {
   return (
     <>
       <Head>
-        <title>EmelleTV</title>
+        <title>emelle.tv</title>
       </Head>
       <Header />
       <Episodes episodes={props.episodes} />

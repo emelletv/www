@@ -2,18 +2,25 @@ import { Html, Head, Main, NextScript } from "next/document";
 import constants from "../constants";
 
 const Document = () => {
-  const ogImage = `https://api.metaimg.net/v1/render?design=simple&align=left&image=https%3A%2F%2Fres.cloudinary.com%2Fdnuyyxyti%2Fimage%2Fupload%2Fv1662293682%2Fmetaimg-playground%2Flygdhae2afhb6qv4zxll.jpg&title=EmelleTV&description=The+Twitch+show+to+talk+about+OCaml%2C+ReScript+%26+Reason+ecosystems+with+cool+members+of+the+community%2C+and+learn+from+them.&textColor=454444&backgroundColor=FFFFFF`;
-
   const description =
     "The show to talk about OCaml, ReScript and Reason ecosystems";
 
-  const title = "EmelleTV";
+  const title = "emelle.tv";
+
+  const ogImage = `https://metaimg.xyz/v1/render?design=simple&align=left&image=https%3A%2F%2Fres.cloudinary.com%2Fdnuyyxyti%2Fimage%2Fupload%2Fv1662293682%2Fmetaimg-playground%2Flygdhae2afhb6qv4zxll.jpg&title=${encodeURIComponent(
+    title
+  )}&description=${encodeURIComponent(
+    description
+  )}&textColor=454444&backgroundColor=FFFFFF`;
 
   return (
     <Html>
       <Head>
         <meta name="description" content={description} />
-        <meta name="ahrefs-site-verification" content="20136790116507aaa795de5eec1d1422178986a591d8349bd023017cc975c1f1" />
+        <meta
+          name="ahrefs-site-verification"
+          content="20136790116507aaa795de5eec1d1422178986a591d8349bd023017cc975c1f1"
+        />
         <meta property="og:url" content={constants.httpUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />

@@ -23,8 +23,8 @@ const About = () => (
   <Main>
     <h1>About us</h1>
     <p>
-      EmelleTV is a show where we bring brains from the ML community to talk
-      about their visions and goals in a very casual conversation. EmelleTV is
+      emelle.tv is a show where we bring brains from the ML community to talk
+      about their visions and goals in a very casual conversation. emelle.tv is
       hosted by{" "}
       <a href={constants.authors.davesnx.twitter}>
         {constants.authors.davesnx.name}
@@ -51,7 +51,7 @@ export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>EmelleTV | About us</title>
+        <title>emelle.tv | About us</title>
       </Head>
       <Header />
       <About />

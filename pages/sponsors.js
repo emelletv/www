@@ -50,7 +50,7 @@ export default function SponsorsPage() {
   return (
     <>
       <Head>
-        <title>EmelleTV | Sponsors</title>
+        <title>emelle.tv | Sponsors</title>
       </Head>
       <Header />
       <Main>
